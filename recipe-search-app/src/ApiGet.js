@@ -5,13 +5,13 @@ function ApiGet() {
   const [userSearch, setRecipeData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState();
-  const apiPath = 'https://api.spoonacular.com/recipes/findByIngredients?apiKey=';
+  const apiPath = 'https://api.spoonacular.com/recipes/random?apiKey=';
   const apiKey = '4fdab9234b0245be8581462069bd738f'
 
   useEffect(() => {
       console.log('UseEffect');
 
-      fetch(`${apiPath}${apiKey}&ingredients=apples,pork&number=15`)
+      fetch(`${apiPath}${apiKey}&number=10`)
       .then((response) => {
 
         if (response.ok) {
@@ -42,7 +42,7 @@ function ApiGet() {
       <h2 style={styles.h2}>{loading}</h2>
 
       <div>
-        {userSearch.map (data => (
+        {userSearch.recipes.map (data => (
           <div><h3>{data.title}</h3>
           <p><img src={data.image} alt='recipe finished product' /></p>
           </div>
