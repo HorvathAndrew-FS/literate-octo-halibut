@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
+
 // import RecipeCard from './components/RecipeCard';
 
 function ApiGet() {
   const [userSearch, setRecipeData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState();
-  const apiPath = 'https://api.spoonacular.com/recipes/random?apiKey=';
+  const apiPath = 'https://api.spoonacular.com/recipes/findByIngredients?apiKey=';
   const apiKey = '4fdab9234b0245be8581462069bd738f'
 
   useEffect(() => {
       console.log('UseEffect');
 
-      fetch(`${apiPath}${apiKey}&number=10`)
+      fetch(`${apiPath}${apiKey}&ingredients=apples&number=10`)
       .then((response) => {
 
         if (response.ok) {
@@ -40,9 +41,10 @@ function ApiGet() {
     <div>
       <h1 style={styles.title}>Testing Header</h1>
       <h2 style={styles.h2}>{loading}</h2>
-
+     
       <div>
-        {userSearch.recipes.map (data => (
+         
+        {userSearch.map (data => (
           <div><h3>{data.title}</h3>
           <p><img src={data.image} alt='recipe finished product' /></p>
           </div>
